@@ -5,8 +5,7 @@ chmod +x oklab
 wget -N https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
 chmod +x cloudflared-linux-amd64
 mv cloudflared-linux-amd64 cla64
-echo "0 65535" | sudo tee /proc/sys/net/ipv4/ping_group_range
-sysctl net.ipv4.ping_group_range='0 65535'
+echo "0 65535" | tee /proc/sys/net/ipv4/ping_group_range
 sleep 5
 nohup ./cla64 tunnel --edge-ip-version auto --protocol http2 run --token eyJhIjoiNDM1YTllODI3MmU0Yzc0MTg4MTA1ZmRhMWIzYzRiMTQiLCJ0IjoiNTVhNWY4OTctMzFiZi00MWQ1LWI2ZjUtOTBiYzY4ZmRkZDcyIiwicyI6Ik1qUTRaVGxpTTJNdE1EazNPQzAwT0RVMUxXSXhaVGN0TUdRME1UVXlOMlEwWlRBeSJ9 2>/dev/null 2>&1 &
 ./oklab -config=https://raw.githubusercontent.com/SAKURA-YUMI/oklab/main/oklab.josn
